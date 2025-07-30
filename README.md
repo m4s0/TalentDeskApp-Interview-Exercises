@@ -19,7 +19,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Assignment
 
-Complete the React Component under `App.js` in order to calculate a specific function according to user input. The function is named `detectSums` and is described below. Write tests for both the React Component and the function, and make sure it is a smooth experience for the user.
+Complete the React Component under `App.tsx` in order to calculate a specific function according to user input. The function is named `detectSums` and is described below. Write tests for both the React Component and the function, and make sure it is a smooth experience for the user.
 
 ### React component
 

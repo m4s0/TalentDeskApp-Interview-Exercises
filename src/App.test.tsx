@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './App';
-import {cleanup, fireEvent, render, screen} from '@testing-library/react';
+import {cleanup, render} from '@testing-library/react';
 
 afterEach(cleanup);
 
