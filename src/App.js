@@ -9,7 +9,7 @@ class App extends Component {
       value: '',
       userInput: '',
       result: '',
-      error: 'Write something',
+      error: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,23 +28,24 @@ class App extends Component {
   }
 
   render() {
-    const { userInput, result, error } = this.state;
+    const { value, result, error } = this.state;
     return (
-      <div className="App">
-        <form className="App-form" onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          { !error &&
-            <p>
-              <span>Result for input '{userInput}' is '{result}'</span>
-            </p>
-          }
-          { error &&
-            <p className="App-error">
-              {error}
-            </p>
-          }
-        </form>
-      </div>
+        <div className="App">
+          <form className="App-form" onSubmit={this.handleSubmit}>
+            <input type="text" value={value} onChange={this.handleChange}/>
+            <button type="submit">Calculate</button>
+            {!error && (
+                <p>
+                  <span>Result for input '{value}' is '{JSON.stringify(result, null, 2)}'</span>
+                </p>
+            )}
+            {error && (
+                <p className="App-error">
+                  {error}
+                </p>
+            )}
+          </form>
+        </div>
     );
   }
 }
