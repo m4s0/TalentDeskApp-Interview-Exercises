@@ -14,7 +14,8 @@ import {
 import {SumDetected} from "./types/sum-detected";
 import {SumsDetected} from "./SumsDetected";
 import {theme} from "./theme";
-import {detectSums, validateAndConvertInput} from "./utils";
+import {validateAndConvertInput} from './utils/validate-and-convert-input';
+import {detectSums} from "./utils/detect-sums";
 
 function App() {
     const [input, setInput] = useState('');
