@@ -1,13 +1,7 @@
-type DetectSum = { pA: number, pB: number, sum: number };
+import { SumDetected } from "./types/sum-detected";
 
-type CalculateResult = {
-    input: number[];
-    result: DetectSum[];
-    error: string | null;
-}
-
-export function detectSums(numbers: number[]): DetectSum[] {
-    const results: DetectSum[] = [];
+export function detectSums(numbers: number[]): SumDetected[] {
+    const results: SumDetected[] = [];
     const numMap = new Map<number, number[]>();
     const seen = new Set<string>();
 
@@ -46,16 +40,23 @@ export function detectSums(numbers: number[]): DetectSum[] {
     return results;
 }
 
-export function calculateResult(input: string): CalculateResult {
-    const parsedInput: number[] = input.split(',').map(i => parseInt(i.trim(), 10));
-    let error: string | null = null;
-    let result: DetectSum[] = [];
-
-    try {
-        result = detectSums(parsedInput);
-    } catch (e) {
-        error = e instanceof Error ? e.message : 'An unknown error occurred';
+export function validateAndConvertInput(input: string): number[] {
+    const numbers = input.split(/[,\s]+/).filter(Boolean).map(Number);
+    if (numbers.length < 3) {
+        throw new Error('Please enter at least 3 numbers');
     }
 
-    return {input: parsedInput, result, error};
+    if (numbers.some(n => isNaN(n))) {
+        throw new Error('Invalid input: Please enter only numbers');
+    }
+
+    if (numbers.some(n => n % 1 !== 0)) {
+        throw new Error('Invalid input: Please enter integers');
+    }
+
+    if (numbers.some(n => n > 100)) {
+        throw new Error('Invalid input: Please enter numbers less than or equal to 100');
+    }
+
+    return numbers;
 }
